@@ -6,7 +6,7 @@
 #    By: aumarin <aumarin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/27 22:04:09 by aumarin           #+#    #+#              #
-#    Updated: 2022/10/27 23:36:09 by aumarin          ###   ########.fr        #
+#    Updated: 2022/10/27 23:39:20 by aumarin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ clean:
 
 fclean: clean
 	@make fclean -C $(LIBFT_PATH)
-	@make fclean -C $(MINILIBX_PATH)
+	@make clean -C $(MINILIBX_PATH)
 	@rm -f $(NAME)
 
 re: fclean all
