@@ -1,27 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.c                                              :+:      :+:    :+:   */
+/*   mlx_destroy_display.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aumarin <aumarin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/27 20:26:31 by aumarin           #+#    #+#             */
-/*   Updated: 2022/10/27 22:43:12 by aumarin          ###   ########.fr       */
+/*   Created: 2020/10/03 18:56:35 by mg                #+#    #+#             */
+/*   Updated: 2020/10/04 01:55:35 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-#include "fdf.h"
+#include "mlx_int.h"
 
-int	main(int argc, char **argv)
+int	mlx_destroy_display(t_xvar *xvar)
 {
-	int	fd;
-
-	if (argc != 2)
-		return (1);
-	fd = open(argv[1], O_RDONLY);
-	if (fd < 0)
-		return (1);
-	
-	return (0);
+	XCloseDisplay(xvar->display);
 }

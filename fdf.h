@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.c                                              :+:      :+:    :+:   */
+/*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aumarin <aumarin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/27 20:26:31 by aumarin           #+#    #+#             */
-/*   Updated: 2022/10/27 22:43:12 by aumarin          ###   ########.fr       */
+/*   Created: 2022/10/27 20:47:30 by aumarin           #+#    #+#             */
+/*   Updated: 2022/10/27 22:42:13 by aumarin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-#include "fdf.h"
+#ifndef FDF_H
+# define FDF_H
 
-int	main(int argc, char **argv)
+# include <fcntl.h>
+
+typedef struct s_coordinate
 {
-	int	fd;
+	int	x;
+	int	y;
+	int	z;
+	int	x_pixel;
+	int	y_pixel;
+}	t_coordinates;
 
-	if (argc != 2)
-		return (1);
-	fd = open(argv[1], O_RDONLY);
-	if (fd < 0)
-		return (1);
-	
-	return (0);
-}
+
+#endif
