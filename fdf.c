@@ -6,11 +6,10 @@
 /*   By: aumarin <aumarin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 20:26:31 by aumarin           #+#    #+#             */
-/*   Updated: 2022/10/27 22:43:12 by aumarin          ###   ########.fr       */
+/*   Updated: 2022/10/28 03:09:31 by aumarin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
 #include "fdf.h"
 
 int	main(int argc, char **argv)
@@ -22,6 +21,6 @@ int	main(int argc, char **argv)
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
 		return (1);
-	
+	get_map(fd);
 	return (0);
 }
