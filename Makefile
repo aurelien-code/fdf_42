@@ -6,16 +6,17 @@
 #    By: aumarin <aumarin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/27 22:04:09 by aumarin           #+#    #+#              #
-#    Updated: 2022/11/03 21:22:24 by aumarin          ###   ########.fr        #
+#    Updated: 2022/11/09 17:02:27 by aumarin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
 SRCS =	fdf.c \
-		srcs/parser.c
+		srcs/parser.c \
+		srcs/ll_actions.c
 OBJ = $(SRCS:.c=.o)
 C_FLAGS = -Wall -Werror -Wextra 
-CC = gcc
+CC = cc
 
 LIBFT_PATH = ./includes/libft
 MINILIBX_PATH = ./includes/minilibx-linux/

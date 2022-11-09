@@ -6,7 +6,7 @@
 /*   By: aumarin <aumarin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 20:47:30 by aumarin           #+#    #+#             */
-/*   Updated: 2022/11/03 21:40:53 by aumarin          ###   ########.fr       */
+/*   Updated: 2022/11/09 17:53:38 by aumarin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,21 +20,22 @@
 
 typedef struct s_point
 {
-	int		x;
-	int		y;
-	int		z;	
-	int		x_pixel;
-	int		y_pixel;
-	t_point	*next;
+	int				x;
+	int				y;
+	int				z;	
+	int				x_pixel;
+	int				y_pixel;
+	struct s_point	*next;
 }	t_point;
 
-typedef struct s_map_data
+typedef struct s_map
 {
 	int		x_size;
 	int		y_size;
 	t_point	*points;
-}	t_map_data;
+}	t_map;
 
-t_map_data	*get_map(int fd);
+t_map	*get_map(int fd);
+t_point	add_last(t_map *map, t_point *point);
 
 #endif

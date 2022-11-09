@@ -1,0 +1,14 @@
+2 structures :
+	t_map => Donnees generales de la map
+	t_points => Les points de map
+Parser.c :
+	- Check file extension ✅
+	- Read file ✅
+	- Store file data into a linked list ❌
+	- get_map => return the LL first pointer (= first element) ❌
+ListManipulation.c :
+	- Add last ✅
+	- Get Element (x, y) ✅
+	- Modify Element (x, y) ❌ 
+Render.c :
+	...
