@@ -12,10 +12,23 @@
 
 #include "fdf.h"
 
-/*
-	@return the new point adress
-*/
-t_point	add_last(t_map *map, t_point *point)
+t_point *new_point(int x, int y, int z)
+{
+	t_point	*point;
+
+	point = malloc(sizeof(t_point) * 1);
+	if (!point)
+		return (NULL);
+	point->x = x;
+	point->y = y;
+	point->z = z;
+	point->x_pixel = -1;
+	point->y_pixel = -1;
+	point->next = NULL;
+	return (point);
+}
+
+t_point	*add_last(t_map *map, t_point *point)
 {
 	t_point	*pt_head;
 
@@ -24,14 +37,14 @@ t_point	add_last(t_map *map, t_point *point)
 	if (!map->points)
 	{
 		map->points = point;
-		pt_head = point;
+		return (point);
 	}
 	else
 		pt_head = map->points;
-	while (pt_head->next != NULL)
+	while (pt_head->next)
 		pt_head = pt_head->next;
 	pt_head->next = point;
-	return (map);
+	return (pt_head);
 }
 
 t_point	*get_point(int x, int y, t_point *head)
@@ -61,4 +74,26 @@ t_point	*modify_point(int x, int y, t_point *head, t_point *new)
 		point_to_change = new;
 	}
 	return (NULL);
+}
+
+void	free_points(t_map *map)
+{
+	t_point *point;
+	t_point	*tmp;
+
+	if (!map->points)
+		return ;
+	tmp = NULL;
+	point = map->points;
+	while (point->next)
+	{
+		if (tmp)
+			free(tmp);
+		tmp = point;
+		point = point->next;
+	}
+	if (tmp)
+		free(tmp);
+	if (point)
+		free(point);
 }

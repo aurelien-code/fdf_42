@@ -36,6 +36,8 @@ typedef struct s_map
 }	t_map;
 
 t_map	*get_map(int fd);
-t_point	add_last(t_map *map, t_point *point);
+t_point	*add_last(t_map *map, t_point *point);
+t_point *new_point(int x, int y, int z);
+void	free_points(t_map *map);
 
 #endif

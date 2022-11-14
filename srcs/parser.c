@@ -24,29 +24,31 @@ int	is_file_fdf(char *path)
 	return (1);
 }
 
-void	add_point(t_map *md, int x, int y, int z)
+void	print_ll(t_map *map)
 {
-	t_point	*point;
-	(void)md;
-	point = malloc(sizeof(t_point) * 1);
-	if (!point)
-		return ;
-	point->x = x;
-	point->y = y;
-	point->z = z;
-	point->x_pixel = -1;
-	point->y_pixel = -1;
-	printf("-> x = %d, y = %d, z = %d\n", point->x, point->y, point->z);
+	t_point *h;
 
+	if (!map)
+		return ;
+	printf("Donnees de la LL => \n");
+	h = map->points;
+	while (h->next)
+	{
+		printf("x = %d, y = %d, z = %d\n", h->x, h->y, h->z);
+		h = h->next;
+	}
+	printf("Fin de la LL\n");
 }
 
 void	read_map(int fd, t_map *map_data)
 {
 	char	*full_line;
 	char	**split_line;
+	t_point	*p;
 	int		i;
 
 	full_line = get_next_line(fd);
+	p = NULL;
 	while (full_line)
 	{
 		if (!full_line)
@@ -56,7 +58,10 @@ void	read_map(int fd, t_map *map_data)
 		i = 0;
 		while (split_line && split_line[i])
 		{
-			add_point(map_data, map_data->x_size, i, ft_atoi(split_line[i]));
+			p = new_point(map_data->x_size, i, ft_atoi(split_line[i]));
+			if (!p)
+				return ;
+			add_last(map_data, p);
 			free(split_line[i]);
 			i++;
 		}
@@ -66,6 +71,7 @@ void	read_map(int fd, t_map *map_data)
 		full_line = get_next_line(fd);
 	}
 	map_data->y_size = i;
+	print_ll(map_data);
 	printf("Fichier parse correctement !\n");
 }
 
@@ -74,12 +80,12 @@ t_map	*get_map(int fd)
 	t_map		*map_data;
 
 	map_data = malloc(sizeof(t_map) * 1);
-	map_data->x_size = 0;
-	map_data->y_size = 0;
 	if (!map_data)
 		return (NULL);
+	map_data->x_size = 0;
+	map_data->y_size = 0;
 	read_map(fd, map_data);
-	printf("Dim = %d,%d\n", map_data->x_size, map_data->y_size);
+	free_points(map_data);
 	free(map_data);
 	return (NULL);
 }

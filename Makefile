@@ -15,7 +15,7 @@ SRCS =	fdf.c \
 		srcs/parser.c \
 		srcs/ll_actions.c
 OBJ = $(SRCS:.c=.o)
-C_FLAGS = -Wall -Werror -Wextra 
+C_FLAGS = -g3 -Wall -Werror -Wextra
 CC = cc
 
 LIBFT_PATH = ./includes/libft
