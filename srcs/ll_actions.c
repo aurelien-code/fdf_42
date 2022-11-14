@@ -12,7 +12,7 @@
 
 #include "fdf.h"
 
-t_point *new_point(int x, int y, int z)
+t_point	*new_point(int x, int y, int z)
 {
 	t_point	*point;
 

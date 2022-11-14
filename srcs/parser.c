@@ -84,6 +84,7 @@ t_map	*get_map(int fd)
 		return (NULL);
 	map_data->x_size = 0;
 	map_data->y_size = 0;
+	map_data->points = NULL;
 	read_map(fd, map_data);
 	free_points(map_data);
 	free(map_data);
