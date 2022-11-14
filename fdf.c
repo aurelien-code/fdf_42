@@ -14,13 +14,18 @@
 
 int	main(int argc, char **argv)
 {
-	int	fd;
+	int		fd;
+	t_map	*map;
 
 	if (argc != 2)
 		return (1);
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
 		return (1);
-	get_map(fd);
+	map = get_map(fd);
+	if (!map)
+		return (0);
+	free_points(map);
+	free(map);
 	return (0);
 }

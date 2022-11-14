@@ -61,24 +61,9 @@ t_point	*get_point(int x, int y, t_point *head)
 	return (NULL);
 }
 
-t_point	*modify_point(int x, int y, t_point *head, t_point *new)
-{
-	t_point	*point_to_change;
-
-	point_to_change = get_point(x, y, head);
-	if (!point_to_change)
-		return (NULL);
-	else
-	{
-		new->next = point_to_change->next;
-		point_to_change = new;
-	}
-	return (NULL);
-}
-
 void	free_points(t_map *map)
 {
-	t_point *point;
+	t_point	*point;
 	t_point	*tmp;
 
 	if (!map->points)

@@ -26,7 +26,7 @@ int	is_file_fdf(char *path)
 
 void	print_ll(t_map *map)
 {
-	t_point *h;
+	t_point	*h;
 
 	if (!map)
 		return ;
@@ -40,15 +40,13 @@ void	print_ll(t_map *map)
 	printf("Fin de la LL\n");
 }
 
-void	read_map(int fd, t_map *map_data)
+void	read_map(int fd, t_map *map)
 {
 	char	*full_line;
 	char	**split_line;
-	t_point	*p;
 	int		i;
 
 	full_line = get_next_line(fd);
-	p = NULL;
 	while (full_line)
 	{
 		if (!full_line)
@@ -58,35 +56,28 @@ void	read_map(int fd, t_map *map_data)
 		i = 0;
 		while (split_line && split_line[i])
 		{
-			p = new_point(map_data->x_size, i, ft_atoi(split_line[i]));
-			if (!p)
-				return ;
-			add_last(map_data, p);
+			add_last(map, new_point(map->x_size, i, ft_atoi(split_line[i])));
 			free(split_line[i]);
 			i++;
 		}
-		map_data->x_size++;
+		map->x_size++;
 		if (split_line)
 			free(split_line);
 		full_line = get_next_line(fd);
 	}
-	map_data->y_size = i;
-	print_ll(map_data);
-	printf("Fichier parse correctement !\n");
+	map->y_size = i;
 }
 
 t_map	*get_map(int fd)
 {
-	t_map		*map_data;
+	t_map		*map;
 
-	map_data = malloc(sizeof(t_map) * 1);
-	if (!map_data)
+	map = malloc(sizeof(t_map) * 1);
+	if (!map)
 		return (NULL);
-	map_data->x_size = 0;
-	map_data->y_size = 0;
-	map_data->points = NULL;
-	read_map(fd, map_data);
-	free_points(map_data);
-	free(map_data);
-	return (NULL);
+	map->x_size = 0;
+	map->y_size = 0;
+	map->points = NULL;
+	read_map(fd, map);
+	return (map);
 }
