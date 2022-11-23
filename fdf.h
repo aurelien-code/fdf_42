@@ -6,7 +6,7 @@
 /*   By: aumarin <aumarin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 20:47:30 by aumarin           #+#    #+#             */
-/*   Updated: 2022/11/09 17:53:38 by aumarin          ###   ########.fr       */
+/*   Updated: 2022/11/23 09:11:44 by aumarin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,16 @@
 # include <stdlib.h>
 # include <stdio.h> //DO NOT FORGET : replace with ft_printf before submit
 # include "./includes/libft/libft.h"
+# include "./includes/minilibx-linux/mlx.h"
+
+# define RAD_30 0.523599
+# define SCALE 20
+# define WIN_WIDTH 1280
+# define WIN_HEIGHT 720
+# define RED 0x00FF0000
+# define GREEN 0x0000FF00
+# define BLUE 0x000000FF
+# define YELLOW 0x00FFFF00
 
 typedef struct s_point
 {
@@ -35,9 +45,20 @@ typedef struct s_map
 	t_point	*points;
 }	t_map;
 
+typedef struct s_data
+{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}	t_data;
+
+
 t_map	*get_map(int fd);
 t_point	*add_last(t_map *map, t_point *point);
-t_point *new_point(int x, int y, int z);
+t_point	*new_point(int x, int y, int z);
 void	free_points(t_map *map);
+void	init_windows(t_map *map);
 
 #endif

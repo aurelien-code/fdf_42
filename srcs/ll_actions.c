@@ -6,11 +6,12 @@
 /*   By: aumarin <aumarin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 17:02:32 by aumarin           #+#    #+#             */
-/*   Updated: 2022/11/09 18:12:52 by aumarin          ###   ########.fr       */
+/*   Updated: 2022/11/23 08:46:05 by aumarin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+#include <math.h>
 
 t_point	*new_point(int x, int y, int z)
 {
@@ -22,8 +23,8 @@ t_point	*new_point(int x, int y, int z)
 	point->x = x;
 	point->y = y;
 	point->z = z;
-	point->x_pixel = -1;
-	point->y_pixel = -1;
+	point->x_pixel = ((x - y) * cos(RAD_30));
+	point->y_pixel = ((-z) + ((x + y) * sin(RAD_30)));
 	point->next = NULL;
 	return (point);
 }

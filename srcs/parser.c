@@ -6,7 +6,7 @@
 /*   By: aumarin <aumarin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 00:05:55 by aumarin           #+#    #+#             */
-/*   Updated: 2022/11/09 16:57:05 by aumarin          ###   ########.fr       */
+/*   Updated: 2022/11/23 03:53:02 by aumarin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,16 +56,16 @@ void	read_map(int fd, t_map *map)
 		i = 0;
 		while (split_line && split_line[i])
 		{
-			add_last(map, new_point(map->x_size, i, ft_atoi(split_line[i])));
+			add_last(map, new_point(i, map->y_size, ft_atoi(split_line[i])));
 			free(split_line[i]);
 			i++;
 		}
-		map->x_size++;
+		map->y_size++;
 		if (split_line)
 			free(split_line);
 		full_line = get_next_line(fd);
 	}
-	map->y_size = i;
+	map->x_size = i;
 }
 
 t_map	*get_map(int fd)
@@ -79,5 +79,6 @@ t_map	*get_map(int fd)
 	map->y_size = 0;
 	map->points = NULL;
 	read_map(fd, map);
+	printf("MAP_SIZE = [%d, %d]\n", map->x_size, map->y_size);
 	return (map);
 }

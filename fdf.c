@@ -6,7 +6,7 @@
 /*   By: aumarin <aumarin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 20:26:31 by aumarin           #+#    #+#             */
-/*   Updated: 2022/10/28 03:09:31 by aumarin          ###   ########.fr       */
+/*   Updated: 2022/11/23 01:35:32 by aumarin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	main(int argc, char **argv)
 	map = get_map(fd);
 	if (!map)
 		return (0);
+	init_windows(map);
 	free_points(map);
 	free(map);
 	return (0);
