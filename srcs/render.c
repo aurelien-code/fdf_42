@@ -6,7 +6,7 @@
 /*   By: aumarin <aumarin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 18:57:28 by aumarin           #+#    #+#             */
-/*   Updated: 2022/11/23 10:11:53 by aumarin          ###   ########.fr       */
+/*   Updated: 2022/11/23 11:42:14 by aumarin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ void	init_windows(t_map *map)
 	{
 		if (p->next)
 			draw_line(p, p->next, &img);
-		
 		p = p->next;
 	}
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 10, 10);
