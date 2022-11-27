@@ -1,37 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.c                                              :+:      :+:    :+:   */
+/*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aumarin <aumarin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/27 20:26:31 by aumarin           #+#    #+#             */
-/*   Updated: 2022/11/27 09:16:15 by aumarin          ###   ########.fr       */
+/*   Created: 2022/11/26 20:21:41 by aumarin           #+#    #+#             */
+/*   Updated: 2022/11/27 07:45:59 by aumarin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	main(int argc, char **argv)
+int	on_key_press(int keycode, t_mlx *mlx_data)
 {
-	int		fd;
-	t_map	*map;
-	t_mlx	*mlx_data;
+	if (keycode == KEY_ESC)
+	{
+		printf("ESC pressed\n");
+		mlx_loop_end(mlx_data->mlx);
+	}
+	return (0);
+}
 
-	if (argc != 2)
-		return (1);
-	fd = open(argv[1], O_RDONLY);
-	if (fd < 0)
-		return (1);
-	map = get_map(fd);
-	if (!map)
-		return (1);
-	close(fd);
-	mlx_data = malloc(sizeof(t_data) * 1);
-	if (!mlx_data)
-		return (1);
-	mlx_data->map = map;
-	init_window(mlx_data, map);
-	printf("Loop detruite 2!!!!\n");
+int	on_close_press(int keycode, t_mlx *mlx_data)
+{
+	printf("Cross pressed\n");
+	(void)keycode;
+	(void)mlx_data;
 	return (0);
 }

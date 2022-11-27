@@ -6,7 +6,7 @@
 /*   By: aumarin <aumarin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 20:47:30 by aumarin           #+#    #+#             */
-/*   Updated: 2022/11/23 09:11:44 by aumarin          ###   ########.fr       */
+/*   Updated: 2022/11/27 09:17:07 by aumarin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,9 @@
 # define RED 0x00FF0000
 # define GREEN 0x0000FF00
 # define BLUE 0x000000FF
+# define WHITE 0xFFFFFF
 # define YELLOW 0x00FFFF00
+# define KEY_ESC 65307
 
 typedef struct s_point
 {
@@ -42,6 +44,7 @@ typedef struct s_map
 {
 	int		x_size;
 	int		y_size;
+	int		zoom;
 	t_point	*points;
 }	t_map;
 
@@ -54,11 +57,28 @@ typedef struct s_data
 	int		endian;
 }	t_data;
 
+typedef struct s_mlx
+{
+	void	*mlx;
+	void	*win;
+	t_data	*img;
+	t_map	*map;
+}	t_mlx;
+
+typedef struct s_coordinates
+{
+	int	x;
+	int	y;
+}	t_coordinates;
 
 t_map	*get_map(int fd);
 t_point	*add_last(t_map *map, t_point *point);
-t_point	*new_point(int x, int y, int z);
+t_point	*new_point(int x, int y, int z, int zoom);
+t_point	*get_point(int x, int y, t_point *head);
 void	free_points(t_map *map);
-void	init_windows(t_map *map);
-
+void	init_window(t_mlx *mlx_data, t_map *map);
+void	push_pixel(t_data *data, int x, int y, int color);
+int		on_key_press(int keycode, t_mlx *mlx);
+int		on_close_press(int keycode, t_mlx *mlx);
+void	bresenham(t_coordinates s, t_coordinates e, t_data *win);
 #endif

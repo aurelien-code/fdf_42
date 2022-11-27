@@ -10,23 +10,8 @@ ListManipulation.c :
 	- Add last ✅
 	- Get Element (x, y) ✅
 Render.c :
-	- Algo trace de lignes ❌
-	- Transformation isometrique ❌
+	- Algo trace de lignes ✅
+	- Transformation isometrique ✅
 Hooks.c :
 	- Touche ESC ❌
 	- Cliquer sur la croix ❌
-
-
-msg_1:
-	Dans l'ordre, tu fait une projection 3D -> 2D pour pouvoir mapper l'une des trois dimensions sur x ou y, généralement z sur y
-	Puis tu appliques ta transformation pour avoir la vue isométrique 
-	et ensuite avec les coordonées de ces deux points tu trace une ligne entre les deux
-	De mémoire pour faire les rotations tu greffe ton algo de rotation après projection mais avant transformation
-	(j'vais check mon code vite fait)
-	Ouai c'est ça, tu projete, tu rotate et finalement tu transforme
-
-isometric_projection_ressources:
-	https://en.wikipedia.org/wiki/Isometric_projection
-	https://gamedev.stackexchange.com/questions/159434/how-to-convert-3d-coordinates-to-2d-isometric-coordinates
-	https://www.appsloveworld.com/c/100/255/convert-3d-coordinates-to-2d-in-an-isometric-projection
-
