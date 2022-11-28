@@ -6,7 +6,7 @@
 /*   By: aumarin <aumarin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 00:05:55 by aumarin           #+#    #+#             */
-/*   Updated: 2022/11/27 09:53:24 by aumarin          ###   ########.fr       */
+/*   Updated: 2022/11/28 20:46:58 by aumarin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,42 +47,49 @@ void	read_map(int fd, t_map *map)
 	int		i;
 
 	full_line = get_next_line(fd);
-	if (!full_line)
-		return ;
 	while (full_line)
 	{
 		if (!full_line)
 			return ;
 		split_line = ft_split(full_line, ' ');
 		free(full_line);
-		i = 0;
-		while (split_line && split_line[i])
+		i = -1;
+		while (split_line && split_line[++i])
 		{
 			add_last(map, new_point(i, map->y_size, ft_atoi(split_line[i]), \
 				map->zoom));
 			free(split_line[i]);
-			i++;
 		}
+		add_last(map, new_point(i + 1, 0, 0, map->zoom));
 		map->y_size++;
 		if (split_line)
 			free(split_line);
 		full_line = get_next_line(fd);
+		map->x_size = i;
 	}
-	map->x_size = i;
 }
 
-t_map	*get_map(int fd)
+t_map	*get_map(char **argv)
 {
 	t_map		*map;
+	int			fd;
 
+	fd = open(argv[1], O_RDONLY);
+	if (fd < 0)
+		return (NULL);
 	map = malloc(sizeof(t_map) * 1);
 	if (!map)
 		return (NULL);
+	map->zoom = 30;
+	close(fd);
+	fd = open(argv[1], O_RDONLY);
+	if (fd < 0)
+		return (NULL);
 	map->x_size = 0;
 	map->y_size = 0;
-	map->zoom = 40;
 	map->points = NULL;
 	read_map(fd, map);
+	close(fd);
 	printf("MAP_SIZE = [%d, %d]\n", map->x_size, map->y_size);
 	return (map);
 }

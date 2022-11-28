@@ -6,7 +6,7 @@
 /*   By: aumarin <aumarin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 20:21:41 by aumarin           #+#    #+#             */
-/*   Updated: 2022/11/28 14:35:33 by aumarin          ###   ########.fr       */
+/*   Updated: 2022/11/28 19:51:58 by aumarin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int	on_close_press(int keycode, t_mlx *mlx_data)
 {
 	(void)keycode;
 	printf("Cross pressed\n");
-	mlx_loop_end(mlx_data->mlx);
+	if (mlx_data->mlx)
+		mlx_loop_end(mlx_data->mlx);
 	return (0);
 }

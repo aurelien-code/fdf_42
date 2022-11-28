@@ -6,7 +6,7 @@
 /*   By: aumarin <aumarin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 18:57:28 by aumarin           #+#    #+#             */
-/*   Updated: 2022/11/28 14:29:11 by aumarin          ###   ########.fr       */
+/*   Updated: 2022/11/28 20:34:51 by aumarin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	init_window(t_map *map)
 	mlx_data.mlx = mlx_init();
 	mlx_data.win = mlx_new_window(mlx_data.mlx, WIN_WIDTH, WIN_HEIGHT, "fdf");
 	mlx_hook(mlx_data.win, 2, 1L << 0, on_key_press, &mlx_data);
-	mlx_hook(mlx_data.win, 17, 1L << 0, on_close_press, &mlx_data);
+	mlx_hook(mlx_data.win, 17, 1L << 17, on_close_press, &mlx_data);
 	img.img = mlx_new_image(mlx_data.mlx, WIN_WIDTH, WIN_HEIGHT);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, \
 								&img.line_length, &img.endian);

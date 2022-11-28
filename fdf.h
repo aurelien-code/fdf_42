@@ -6,7 +6,7 @@
 /*   By: aumarin <aumarin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 20:47:30 by aumarin           #+#    #+#             */
-/*   Updated: 2022/11/28 14:20:36 by aumarin          ###   ########.fr       */
+/*   Updated: 2022/11/28 18:32:21 by aumarin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ typedef struct s_coordinates
 	int	y;
 }	t_coordinates;
 
-t_map	*get_map(int fd);
+t_map	*get_map(char **line);
 t_point	*add_last(t_map *map, t_point *point);
 t_point	*new_point(int x, int y, int z, int zoom);
 t_point	*get_point(int x, int y, t_point *head);
