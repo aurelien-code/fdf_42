@@ -6,7 +6,7 @@
 /*   By: aumarin <aumarin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 20:26:31 by aumarin           #+#    #+#             */
-/*   Updated: 2022/11/28 12:55:20 by aumarin          ###   ########.fr       */
+/*   Updated: 2022/11/28 13:54:19 by aumarin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	main(int argc, char **argv)
 {
 	int		fd;
 	t_map	*map;
-	t_mlx	*mlx_data;
 
 	if (argc != 2)
 		return (1);
@@ -27,11 +26,7 @@ int	main(int argc, char **argv)
 	if (!map || map->x_size == 0 || map->y_size == 0)
 		return (1);
 	close(fd);
-	mlx_data = malloc(sizeof(t_data) * 1);
-	if (!mlx_data)
-		return (1);
-	mlx_data->map = map;
-	init_window(mlx_data, map);
+	init_window(map);
 	printf("Loop detruite 2!!!!\n");
 	return (0);
 }

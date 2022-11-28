@@ -6,7 +6,7 @@
 /*   By: aumarin <aumarin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 07:06:57 by aumarin           #+#    #+#             */
-/*   Updated: 2022/11/27 07:31:56 by aumarin          ###   ########.fr       */
+/*   Updated: 2022/11/28 13:19:51 by aumarin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ t_line	init_line(int x0, int y0, int x1, int y1)
 	return (t);
 }
 
-void	bresenham(t_coordinates start, t_coordinates end, t_data *win)
+void	bresenham(t_coordinates start, t_coordinates end, t_data win)
 {
 	t_line	t;
 
