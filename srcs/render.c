@@ -6,7 +6,7 @@
 /*   By: aumarin <aumarin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 18:57:28 by aumarin           #+#    #+#             */
-/*   Updated: 2022/11/27 08:38:15 by aumarin          ###   ########.fr       */
+/*   Updated: 2022/11/28 13:11:54 by aumarin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,37 +32,41 @@ void	draw_line(t_point *origin, t_point *dest, t_data *win)
 	bresenham(starting, ending, win);
 }
 
-int	render_next_frame(void *t)
+int	render_next_frame(t_mlx *t)
 {
-	(void)t;
-	return (0);
+	//printf("%d\n", t->map->zoom);
+	if (!t)
+		exit(0);
+	return (1);
 }
 
 void	init_window(t_mlx *mlx_data, t_map *map)
 {
-	t_data	img;
+	t_data	*img;
 	t_point	*p;
 
+	img = malloc(sizeof(t_data) * 1);
+	if (!img)
+		return ;
 	mlx_data->mlx = mlx_init();
 	mlx_data->win = mlx_new_window(mlx_data->mlx, WIN_WIDTH, WIN_HEIGHT, "fdf");
 	mlx_loop_hook(mlx_data->mlx, render_next_frame, mlx_data);
 	mlx_hook(mlx_data->win, 2, 1L << 0, on_key_press, &mlx_data);
 	mlx_hook(mlx_data->win, 17, 1L << 0, on_close_press, &mlx_data);
-	img.img = mlx_new_image(mlx_data->mlx, WIN_WIDTH, WIN_HEIGHT);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, \
-								&img.line_length, &img.endian);
+	img->img = mlx_new_image(mlx_data->mlx, WIN_WIDTH, WIN_HEIGHT);
+	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel, \
+								&img->line_length, &img->endian);
+	mlx_data->img = img;
 	p = map->points;
 	while (p->next)
 	{
 		if (get_point(p->x + 1, p->y, p))
-			draw_line(p, get_point(p->x + 1, p->y, p), &img);
+			draw_line(p, get_point(p->x + 1, p->y, p), img);
 		if (get_point(p->x, p->y + 1, p))
-			draw_line(p, get_point(p->x, p->y + 1, p), &img);
+			draw_line(p, get_point(p->x, p->y + 1, p), img);
 		p = p->next;
 	}
-	mlx_put_image_to_window(mlx_data->mlx, mlx_data->win, img.img, 0, 0);
-	mlx_data->img = &img;
+	mlx_put_image_to_window(mlx_data->mlx, mlx_data->win, img->img, 0, 0);
 	mlx_loop(mlx_data->mlx);
-	printf("Loop detruite !!!!\n");
-	mlx_destroy_display(mlx_data->mlx);
+	return ;
 }

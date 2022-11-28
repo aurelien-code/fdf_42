@@ -6,7 +6,7 @@
 /*   By: aumarin <aumarin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 00:05:55 by aumarin           #+#    #+#             */
-/*   Updated: 2022/11/27 01:25:33 by aumarin          ###   ########.fr       */
+/*   Updated: 2022/11/27 09:53:24 by aumarin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ void	read_map(int fd, t_map *map)
 	int		i;
 
 	full_line = get_next_line(fd);
+	if (!full_line)
+		return ;
 	while (full_line)
 	{
 		if (!full_line)

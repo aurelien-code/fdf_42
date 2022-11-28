@@ -6,7 +6,7 @@
 /*   By: aumarin <aumarin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 17:02:32 by aumarin           #+#    #+#             */
-/*   Updated: 2022/11/27 08:41:00 by aumarin          ###   ########.fr       */
+/*   Updated: 2022/11/27 11:49:09 by aumarin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ t_point	*new_point(int x, int y, int z, int zoom)
 	point->x_pixel = (WIN_WIDTH / 2) + (xx) * cos(RAD_30);
 	point->y_pixel = (WIN_HEIGHT / 3) + (yy) * sin(RAD_30) - (z * zoom / 2);
 	point->next = NULL;
+	//printf("[%d,%d]\n", point->x_pixel, point->y_pixel);
 	return (point);
 }
 
