@@ -12,6 +12,7 @@ ListManipulation.c :
 Render.c :
 	- Algo trace de lignes ✅
 	- Transformation isometrique ✅
+	- Adapter le zoom pour fit la fenetre ❌
 Hooks.c :
-	- Touche ESC ❌
-	- Cliquer sur la croix ❌
+	- Touche ESC ✅
+	- Cliquer sur la croix ✅

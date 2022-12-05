@@ -6,7 +6,7 @@
 /*   By: aumarin <aumarin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 20:47:30 by aumarin           #+#    #+#             */
-/*   Updated: 2022/11/28 18:32:21 by aumarin          ###   ########.fr       */
+/*   Updated: 2022/12/05 17:23:39 by aumarin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ void	free_points(t_map *map);
 void	init_window(t_map *map);
 void	push_pixel(t_data data, int x, int y, int color);
 int		on_key_press(int keycode, t_mlx *mlx);
-int		on_close_press(int keycode, t_mlx *mlx);
 void	bresenham(t_coordinates s, t_coordinates e, t_data win);
 void	clean_exit(t_mlx mlx_data);
 
