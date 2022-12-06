@@ -12,7 +12,14 @@ ListManipulation.c :
 Render.c :
 	- Algo trace de lignes ✅
 	- Transformation isometrique ✅
-	- Adapter le zoom pour fit la fenetre ❌
+	- Adapter le zoom pour fit la fenetre (voir l:20)  ❌
 Hooks.c :
 	- Touche ESC ✅
 	- Cliquer sur la croix ✅
+
+Gestion du zoom :
+	- Calculer max dist sur absyce -> zoom_x ❌
+	- Calculer max dist sur ordone -> zoom_y ❌
+	- zoom_final = min(zoom_x, zoom_y) ❌
+	- Calculer la depth max pour ne pas depasser ! ❌
+

@@ -6,7 +6,7 @@
 /*   By: aumarin <aumarin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 20:21:41 by aumarin           #+#    #+#             */
-/*   Updated: 2022/12/05 17:26:57 by aumarin          ###   ########.fr       */
+/*   Updated: 2022/12/06 03:03:08 by aumarin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	on_key_press(int keycode, t_mlx *mlx_data)
 {
 	if (keycode == KEY_ESC && mlx_data->mlx)
 	{
-		printf("ESC pressed\n");
+		ft_putstr_fd("ESC pressed\n", 1);
 		mlx_loop_end(mlx_data->mlx);
 	}
 	return (0);

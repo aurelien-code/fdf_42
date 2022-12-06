@@ -4,6 +4,3 @@
 [submodule "includes/minilibx-linux"]
 	path = includes/minilibx-linux
 	url = git@github.com:42Paris/minilibx-linux.git
-[submodule "includes/ft_printf"]
-	path = includes/ft_printf
-	url = git@github.com:AurelienMarin/ft_printf.git

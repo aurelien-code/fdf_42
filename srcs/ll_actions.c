@@ -6,14 +6,14 @@
 /*   By: aumarin <aumarin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 17:02:32 by aumarin           #+#    #+#             */
-/*   Updated: 2022/11/28 19:35:37 by aumarin          ###   ########.fr       */
+/*   Updated: 2022/12/06 02:18:51 by aumarin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include <math.h>
 
-t_point	*new_point(int x, int y, int z, int zoom)
+t_point	*new_point(int x, int y, int z, t_map *map)
 {
 	t_point	*point;
 	int		xx;
@@ -25,10 +25,10 @@ t_point	*new_point(int x, int y, int z, int zoom)
 	point->x = x;
 	point->y = y;
 	point->z = z;
-	xx = ((x - y) * zoom);
-	yy = ((x + y) * zoom) / 2 ;
-	point->x_pixel = (WIN_WIDTH / 2) + (xx) * cos(RAD_30);
-	point->y_pixel = (WIN_HEIGHT / 2) + (yy) * sin(RAD_30) - (z * zoom);
+	xx = ((x - y) * map->zoom);
+	yy = ((x + y) * map->zoom) / 2;
+	point->x_pixel = (WIN_WIDTH / 2) + (xx) * cos(RAD_45);
+	point->y_pixel = (WIN_HEIGHT / 2) + (yy) * sin(RAD_45) - (z * map->depth);
 	point->next = NULL;
 	return (point);
 }
