@@ -6,7 +6,7 @@
 /*   By: aumarin <aumarin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 20:47:30 by aumarin           #+#    #+#             */
-/*   Updated: 2022/12/06 02:57:40 by aumarin          ###   ########.fr       */
+/*   Updated: 2022/12/06 03:09:26 by aumarin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include <stdio.h> //DO NOT FORGET : replace with ft_printf before submit
 # include "./includes/libft/libft.h"
 # include "./includes/minilibx-linux/mlx.h"
-# include "./includes/ft_printf/ft_printf.h"
 
 # define RAD_30 0.523599
 # define RAD_45 0.785398
