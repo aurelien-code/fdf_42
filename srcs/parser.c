@@ -6,7 +6,7 @@
 /*   By: aumarin <aumarin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 00:05:55 by aumarin           #+#    #+#             */
-/*   Updated: 2022/12/06 03:04:00 by aumarin          ###   ########.fr       */
+/*   Updated: 2022/12/06 03:26:59 by aumarin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,32 +40,16 @@ void	read_map(int fd, t_map *map)
 		i = -1;
 		while (split_line && split_line[++i])
 		{
-			add_last(map, new_point(i, map->y_size, ft_atoi(split_line[i]), \
-				map));
+			add_last(map, new_point(i, map->y_size, ft_atoi(split_line[i])));
 			free(split_line[i]);
 		}
-		add_last(map, new_point(i + 1, 0, 0, map));
+		add_last(map, new_point(i + 1, 0, 0));
 		map->y_size++;
 		if (split_line)
 			free(split_line);
 		full_line = get_next_line(fd);
 		map->x_size = i;
 	}
-}
-
-void	optimum_zoom(int x, int y)
-{
-	int	zoom;
-	int	yoom;
-
-	yoom = 0;
-	zoom = 0;
-	if (x <= 0 || y <= 0)
-		return ;
-	while ((x + y) * zoom < WIN_WIDTH)
-		zoom++;
-	while ((((x + y) * yoom) / 2) < WIN_HEIGHT)
-		yoom++;
 }
 
 t_map	*get_map(char **argv)
@@ -89,7 +73,7 @@ t_map	*get_map(char **argv)
 	map->y_size = 0;
 	map->points = NULL;
 	read_map(fd, map);
-	optimum_zoom(map->x_size, map->y_size);
+	apply_scale(map);
 	close(fd);
 	return (map);
 }

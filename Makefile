@@ -6,7 +6,7 @@
 #    By: aumarin <aumarin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/27 22:04:09 by aumarin           #+#    #+#              #
-#    Updated: 2022/12/06 03:01:49 by aumarin          ###   ########.fr        #
+#    Updated: 2022/12/06 03:17:08 by aumarin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@ SRCS =	fdf.c \
 		srcs/ll_actions.c \
 		srcs/render.c \
 		srcs/hooks.c \
-		srcs/bresenham.c
+		srcs/bresenham.c \
+		srcs/scale.c
 OBJ = $(SRCS:.c=.o)
 C_FLAGS = -g3 -Wall -Werror -Wextra
 MLX_FLAGS = -Lmlx_linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz

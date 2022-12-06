@@ -6,18 +6,23 @@
 /*   By: aumarin <aumarin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 17:02:32 by aumarin           #+#    #+#             */
-/*   Updated: 2022/12/06 02:18:51 by aumarin          ###   ########.fr       */
+/*   Updated: 2022/12/06 08:49:10 by aumarin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include <math.h>
 
-t_point	*new_point(int x, int y, int z, t_map *map)
+/** FORMULAS
+ * 	xx = ((x - y) * map->zoom);
+ * 	yy = ((x + y) * map->zoom) / 2;
+ *	point->x_pixel = (WIN_WIDTH / 2) + (xx) * cos(RAD_45);
+ *	point->y_pixel = (WIN_HEIGHT / 2) + (yy) * sin(RAD_45) - (z * map->depth);
+*/
+
+t_point	*new_point(int x, int y, int z)
 {
 	t_point	*point;
-	int		xx;
-	int		yy;
 
 	point = malloc(sizeof(t_point) * 1);
 	if (!point)
@@ -25,10 +30,8 @@ t_point	*new_point(int x, int y, int z, t_map *map)
 	point->x = x;
 	point->y = y;
 	point->z = z;
-	xx = ((x - y) * map->zoom);
-	yy = ((x + y) * map->zoom) / 2;
-	point->x_pixel = (WIN_WIDTH / 2) + (xx) * cos(RAD_45);
-	point->y_pixel = (WIN_HEIGHT / 2) + (yy) * sin(RAD_45) - (z * map->depth);
+	point->x_pixel = 0;
+	point->y_pixel = 0;
 	point->next = NULL;
 	return (point);
 }

@@ -6,7 +6,7 @@
 /*   By: aumarin <aumarin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 20:47:30 by aumarin           #+#    #+#             */
-/*   Updated: 2022/12/06 03:09:26 by aumarin          ###   ########.fr       */
+/*   Updated: 2022/12/06 08:25:17 by aumarin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <fcntl.h>
 # include <stdlib.h>
 # include <stdio.h> //DO NOT FORGET : replace with ft_printf before submit
+# include <math.h>
 # include "./includes/libft/libft.h"
 # include "./includes/minilibx-linux/mlx.h"
 
@@ -70,7 +71,7 @@ typedef struct s_coordinates
 
 t_map	*get_map(char **line);
 t_point	*add_last(t_map *map, t_point *point);
-t_point	*new_point(int x, int y, int z, t_map *map);
+t_point	*new_point(int x, int y, int z);
 t_point	*get_point(int x, int y, t_point *head);
 void	free_points(t_map *map);
 void	init_window(t_map *map);
@@ -78,5 +79,6 @@ void	push_pixel(t_data data, int x, int y, int color);
 int		on_key_press(int keycode, t_mlx *mlx);
 void	bresenham(t_coordinates s, t_coordinates e, t_data win);
 void	clean_exit(t_mlx mlx_data);
+void	apply_scale(t_map *map);
 
 #endif
