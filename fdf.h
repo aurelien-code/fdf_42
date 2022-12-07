@@ -6,7 +6,7 @@
 /*   By: aumarin <aumarin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 20:47:30 by aumarin           #+#    #+#             */
-/*   Updated: 2022/12/06 08:25:17 by aumarin          ###   ########.fr       */
+/*   Updated: 2022/12/06 23:56:57 by aumarin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ typedef struct s_map
 {
 	int		x_size;
 	int		y_size;
+	int		offset_x;
+	int		offset_y;
 	int		zoom;
 	int		depth;
 	t_point	*points;

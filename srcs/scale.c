@@ -6,7 +6,7 @@
 /*   By: aumarin <aumarin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 03:16:59 by aumarin           #+#    #+#             */
-/*   Updated: 2022/12/06 12:37:10 by aumarin          ###   ########.fr       */
+/*   Updated: 2022/12/07 01:22:17 by aumarin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,17 +40,67 @@ int	get_zoom(t_map *map)
 			max_yy = yy;
 		point = point->next;
 	}
-	return (ft_min((WIN_WIDTH - 1 )/ max_xx, WIN_HEIGHT / max_yy) - 1);
+	return (ft_min((WIN_WIDTH) / max_xx, WIN_HEIGHT / max_yy));
 }
 
+int	*get_offset(t_map *map)
+{
+	t_point	*point;
+	int		min_y;
+	int		max_y;
+	int		*min;
+
+	point = map->points;
+	min_y = 0;
+	max_y = 0;
+	min = malloc(sizeof(int) * 2);
+	if (!min)
+		return (NULL);
+	min[0] = 0;
+	while (point)
+	{
+		if ((point->x - point->y) * map->zoom * cos(RAD_45) < min[0])
+			min[0] = (point->x - point->y) * map->zoom;
+		if ((((point->x + point->y) * map->zoom) / 2) * sin(RAD_45) < min_y)
+			min_y = (((point->x + point->y) * map->zoom) / 2) * sin(RAD_45);
+		if ((((point->x + point->y) * map->zoom) / 2) * sin(RAD_45) > max_y)
+			max_y = (((point->x + point->y) * map->zoom) / 2) * sin(RAD_45);
+		point = point->next;
+	}
+	min[0] = abs(min[0]);
+	min[1] = abs(min_y) + (WIN_HEIGHT - max_y) / 2;
+	return (min);
+}
+
+
+/**
+ * REGLER PB DEPASSEMENT PAR LE BAS DE LA MAP
+*/
 int	get_depth(t_map *map)
 {
-	return (map->zoom);
-}
+	t_point	*point;
+	t_point	max_z;
+	t_point	min_z;
+	int		depth;
 
-int	get_offset(void)
-{
-	return (0);
+	depth = 0;
+	point = map->points;
+	max_z.z = 0;
+	min_z.z = 0;
+	while (point)
+	{
+		if (point->z > max_z.z)
+			max_z = *point;
+		if (point->z < min_z.z)
+			min_z = *point;
+		point = point->next;
+	}
+	if (min_z.z == 0 && max_z.z == 0)
+		return (0);
+	while (map->offset_y + (((max_z.x + max_z.y) * map->zoom) / 2) * \
+			sin(RAD_45) - (max_z.z * depth) > 10)
+		depth++;
+	return (depth);
 }
 
 void	apply_scale(t_map *map)
@@ -58,19 +108,23 @@ void	apply_scale(t_map *map)
 	t_point	*point;
 	int		xx;
 	int		yy;
+	int		*oset;
 
 	point = map->points;
 	map->zoom = get_zoom(map);
+	oset = get_offset(map);
+	map->offset_x = abs(oset[0]);
+	map->offset_y = abs(oset[1]);
 	map->depth = get_depth(map);
-	printf("ZOOOOM = %d\n", map->zoom);
 	while (point->next)
 	{
 		xx = ((point->x - point->y) * map->zoom);
 		yy = ((point->x + point->y) * map->zoom) / 2;
-		point->x_pixel = (WIN_WIDTH / 3) + (xx) * cos(RAD_45);
-		point->y_pixel = (WIN_HEIGHT / 3) + (yy) * sin(RAD_45) - \
+		point->x_pixel = map->offset_x + (xx) * cos(RAD_45);
+		point->y_pixel = map->offset_y + (yy) * sin(RAD_45) - \
 			(point->z * map->depth);
 		point = point->next;
 	}
+	free(oset);
 	return ;
 }
