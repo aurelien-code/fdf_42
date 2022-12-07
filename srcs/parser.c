@@ -6,7 +6,7 @@
 /*   By: aumarin <aumarin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 00:05:55 by aumarin           #+#    #+#             */
-/*   Updated: 2022/12/07 14:12:32 by aumarin          ###   ########.fr       */
+/*   Updated: 2022/12/07 17:11:11 by aumarin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,14 +71,14 @@ t_map	*get_map(char **argv)
 		return (NULL);
 	if (open(argv[1], O_DIRECTORY) >= 0)
 		return (NULL);
+	fd = open(argv[1], O_RDONLY);
+	if (fd < 0)
+		return (NULL);
 	map = malloc(sizeof(t_map) * 1);
 	if (!map)
 		return (NULL);
 	map->zoom = 30;
 	map->depth = 30;
-	fd = open(argv[1], O_RDONLY);
-	if (fd < 0)
-		return (NULL);
 	map->x_size = 0;
 	map->y_size = 0;
 	map->points = NULL;
