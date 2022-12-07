@@ -6,7 +6,7 @@
 /*   By: aumarin <aumarin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 03:16:59 by aumarin           #+#    #+#             */
-/*   Updated: 2022/12/07 14:28:13 by aumarin          ###   ########.fr       */
+/*   Updated: 2022/12/07 17:15:19 by aumarin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	*get_offset(t_map *map)
 	point = map->points;
 	min_y = 0;
 	max_y = 0;
-	min = malloc(sizeof(int) * 2);
+	min = ft_calloc(2, sizeof(int));
 	if (!min)
 		return (NULL);
 	min[0] = 0;

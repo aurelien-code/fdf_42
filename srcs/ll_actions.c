@@ -6,7 +6,7 @@
 /*   By: aumarin <aumarin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 17:02:32 by aumarin           #+#    #+#             */
-/*   Updated: 2022/12/06 08:49:10 by aumarin          ###   ########.fr       */
+/*   Updated: 2022/12/07 17:14:40 by aumarin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_point	*new_point(int x, int y, int z)
 {
 	t_point	*point;
 
-	point = malloc(sizeof(t_point) * 1);
+	point = ft_calloc(1, sizeof(t_point));
 	if (!point)
 		return (NULL);
 	point->x = x;

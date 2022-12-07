@@ -6,7 +6,7 @@
 /*   By: aumarin <aumarin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 00:05:55 by aumarin           #+#    #+#             */
-/*   Updated: 2022/12/07 17:11:11 by aumarin          ###   ########.fr       */
+/*   Updated: 2022/12/07 17:15:07 by aumarin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ t_map	*get_map(char **argv)
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
 		return (NULL);
-	map = malloc(sizeof(t_map) * 1);
+	map = ft_calloc(1, sizeof(t_map));
 	if (!map)
 		return (NULL);
 	map->zoom = 30;
