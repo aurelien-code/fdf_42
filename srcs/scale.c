@@ -6,18 +6,11 @@
 /*   By: aumarin <aumarin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 03:16:59 by aumarin           #+#    #+#             */
-/*   Updated: 2022/12/07 01:22:17 by aumarin          ###   ########.fr       */
+/*   Updated: 2022/12/07 14:28:13 by aumarin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-/** FORMULAS
- * 	xx = ((x - y) * map->zoom);
- * 	yy = ((x + y) * map->zoom) / 2;
- *	point->x_pixel = (WIN_WIDTH / 2) + (xx) * cos(RAD_45);
- *	point->y_pixel = (WIN_HEIGHT / 2) + (yy) * sin(RAD_45) - (z * map->depth);
-*/
 
 int	get_zoom(t_map *map)
 {
@@ -59,12 +52,12 @@ int	*get_offset(t_map *map)
 	min[0] = 0;
 	while (point)
 	{
-		if ((point->x - point->y) * map->zoom * cos(RAD_45) < min[0])
+		if ((point->x - point->y) * map->zoom * cos(RAD_30) < min[0])
 			min[0] = (point->x - point->y) * map->zoom;
-		if ((((point->x + point->y) * map->zoom) / 2) * sin(RAD_45) < min_y)
-			min_y = (((point->x + point->y) * map->zoom) / 2) * sin(RAD_45);
-		if ((((point->x + point->y) * map->zoom) / 2) * sin(RAD_45) > max_y)
-			max_y = (((point->x + point->y) * map->zoom) / 2) * sin(RAD_45);
+		if ((((point->x + point->y) * map->zoom) / 2) * sin(RAD_30) < min_y)
+			min_y = (((point->x + point->y) * map->zoom) / 2) * sin(RAD_30);
+		if ((((point->x + point->y) * map->zoom) / 2) * sin(RAD_30) > max_y)
+			max_y = (((point->x + point->y) * map->zoom) / 2) * sin(RAD_30);
 		point = point->next;
 	}
 	min[0] = abs(min[0]);
@@ -83,7 +76,7 @@ int	get_depth(t_map *map)
 	t_point	min_z;
 	int		depth;
 
-	depth = 0;
+	depth = 1;
 	point = map->points;
 	max_z.z = 0;
 	min_z.z = 0;
@@ -97,10 +90,10 @@ int	get_depth(t_map *map)
 	}
 	if (min_z.z == 0 && max_z.z == 0)
 		return (0);
-	while (map->offset_y + (((max_z.x + max_z.y) * map->zoom) / 2) * \
-			sin(RAD_45) - (max_z.z * depth) > 10)
+	while ((((max_z.x + max_z.y) * map->zoom) / 2) * \
+			sin(RAD_30) - (max_z.z * depth) + map->offset_y > 0)
 		depth++;
-	return (depth);
+	return (depth - 1);
 }
 
 void	apply_scale(t_map *map)
@@ -120,8 +113,8 @@ void	apply_scale(t_map *map)
 	{
 		xx = ((point->x - point->y) * map->zoom);
 		yy = ((point->x + point->y) * map->zoom) / 2;
-		point->x_pixel = map->offset_x + (xx) * cos(RAD_45);
-		point->y_pixel = map->offset_y + (yy) * sin(RAD_45) - \
+		point->x_pixel = map->offset_x + (xx) * cos(RAD_30);
+		point->y_pixel = map->offset_y + (yy) * sin(RAD_30) - \
 			(point->z * map->depth);
 		point = point->next;
 	}

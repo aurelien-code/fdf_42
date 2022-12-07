@@ -6,7 +6,7 @@
 /*   By: aumarin <aumarin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 00:05:55 by aumarin           #+#    #+#             */
-/*   Updated: 2022/12/06 03:26:59 by aumarin          ###   ########.fr       */
+/*   Updated: 2022/12/07 14:12:32 by aumarin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,16 @@ void	read_map(int fd, t_map *map)
 	}
 }
 
+void	end_if_empty(t_map *map)
+{
+	if (map->x_size == 0 || map->y_size == 0)
+	{
+		ft_putstr_fd("Map vide, fin du programme !\n", 1);
+		free(map);
+		exit(0);
+	}
+}
+
 t_map	*get_map(char **argv)
 {
 	t_map		*map;
@@ -73,6 +83,7 @@ t_map	*get_map(char **argv)
 	map->y_size = 0;
 	map->points = NULL;
 	read_map(fd, map);
+	end_if_empty(map);
 	apply_scale(map);
 	close(fd);
 	return (map);
