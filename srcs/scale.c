@@ -6,7 +6,7 @@
 /*   By: aumarin <aumarin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 03:16:59 by aumarin           #+#    #+#             */
-/*   Updated: 2023/01/06 00:32:23 by aumarin          ###   ########.fr       */
+/*   Updated: 2023/01/07 11:35:09 by aumarin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,11 +92,9 @@ int	get_depth(t_map *map)
 	while ((((max_z.x + max_z.y) * map->zoom) / 2) * \
 			sin(RAD_30) - (max_z.z * depth) + map->offset_y > 0)
 		depth++;
-	printf("Depth = %d | zoom = %d", depth - 1, get_zoom(map));
 	if (get_zoom(map) / 2 > depth || get_zoom(map) == 1)
 		return (depth - 1);
-	else
-		return (depth - get_zoom(map) / 2);
+	return (depth - get_zoom(map) / 2);
 }
 
 void	apply_scale(t_map *map)

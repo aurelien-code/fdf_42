@@ -6,19 +6,12 @@
 /*   By: aumarin <aumarin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 17:02:32 by aumarin           #+#    #+#             */
-/*   Updated: 2022/12/07 17:14:40 by aumarin          ###   ########.fr       */
+/*   Updated: 2023/01/07 11:31:08 by aumarin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include <math.h>
-
-/** FORMULAS
- * 	xx = ((x - y) * map->zoom);
- * 	yy = ((x + y) * map->zoom) / 2;
- *	point->x_pixel = (WIN_WIDTH / 2) + (xx) * cos(RAD_45);
- *	point->y_pixel = (WIN_HEIGHT / 2) + (yy) * sin(RAD_45) - (z * map->depth);
-*/
 
 t_point	*new_point(int x, int y, int z)
 {

@@ -6,7 +6,7 @@
 /*   By: aumarin <aumarin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 20:47:30 by aumarin           #+#    #+#             */
-/*   Updated: 2022/12/06 23:56:57 by aumarin          ###   ########.fr       */
+/*   Updated: 2023/01/07 11:31:22 by aumarin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,13 @@
 
 # include <fcntl.h>
 # include <stdlib.h>
-# include <stdio.h> //DO NOT FORGET : replace with ft_printf before submit
 # include <math.h>
 # include "./includes/libft/libft.h"
 # include "./includes/minilibx-linux/mlx.h"
 
 # define RAD_30 0.523599
 # define RAD_45 0.785398
-# define WIN_WIDTH 1280
+# define WIN_WIDTH 720
 # define WIN_HEIGHT 720
 # define WHITE 0xFFFFFF
 # define KEY_ESC 65307
